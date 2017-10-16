@@ -91,7 +91,6 @@ class Container:
             raise Exception('Invalid type: ' + str(d))
 
     def set_text(self, text):
-        print "Setting text to " + text
         self.text.value = text
 
     def get_text(self):
@@ -186,6 +185,11 @@ class View:
 
 class Annotation:
     def __init__(self, ID, type=None, start=None, end=None):
+        try:
+            basestring
+        except:
+            basestring=str
+
         if isinstance(ID, dict):
             #for k,v in id.items():
             #    self.__dict__[k] = v
