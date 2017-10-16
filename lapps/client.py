@@ -18,14 +18,14 @@ from zeep import Client
 from zeep.transports import Transport
 
 
-class LappsService:
+class ServiceClient:
     def __init__(self, uri):
         session = Session()
         session.auth = HTTPBasicAuth('tester', 'tester')
         transport = Transport(session=session)
         self.client = Client(uri, transport=transport)
 
-    def getMetadata(self):
+    def get_metadata(self):
         return self.client.service.getMetadata();
 
     def execute(self, json):
