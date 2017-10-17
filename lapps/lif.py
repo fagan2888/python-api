@@ -14,7 +14,7 @@
 
 import json
 from copy import deepcopy
-from discriminators import Uri
+from lapps.discriminators import Uri
 
 class Data:
     '''
@@ -157,7 +157,7 @@ class View:
         self.metadata[name] = value
 
     def add_contains(self, type, producer, info):
-        if self.metadata.has_key('contains'):
+        if 'contains' in self.metadata:
             contains = self.metadata['contains']
         else:
             contains = {}
@@ -169,11 +169,11 @@ class View:
         }
 
     def contains(self, type):
-        if not self.metadata.has_key('contains'):
+        if not 'contains' in self.metadata:
             return None
 
         contains = self.metadata['contains']
-        if contains.has_key(type):
+        if type in contains:
             return contains[type]
         return None
 
@@ -202,11 +202,11 @@ class Annotation:
                 self.label = a['label']
             else:
                 self.label = None
-            if a.has_key('features'):
+            if 'features' in a:
                 self.features = deepcopy(a['features'])
             else:
                 self.features = {}
-            if a.has_key('metadata'):
+            if 'metadata' in a:
                 self.metadata = deepcopy(a['metadata'])
             else:
                 self.metadata = {}
@@ -234,7 +234,7 @@ class Annotation:
         self.features[name] = value
 
     def get_feature(self, name):
-        if (self.features.has_key(name)):
+        if (name in self.features):
             return self.features[name]
         return None
 
