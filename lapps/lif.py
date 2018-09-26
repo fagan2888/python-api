@@ -125,9 +125,9 @@ class Container:
         return None
 
     def generate_id(self):
-        n = self.views.__len__ + 1
+        n = len(self.views) + 1
         id = 'v-' + str(n)
-        duplicate = self.find_view(self, id)
+        duplicate = self.find_view(id)
         while duplicate:
             id = 'v-' + str(++n)
             duplicate = self.find_view(self, id)
@@ -171,7 +171,6 @@ class View:
     def contains(self, type):
         if not 'contains' in self.metadata:
             return None
-
         contains = self.metadata['contains']
         if type in contains:
             return contains[type]
