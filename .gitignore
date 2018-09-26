@@ -81,3 +81,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# python
+*pyc
+__pycache__
+
+# emacs
+*~
